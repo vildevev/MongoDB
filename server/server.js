@@ -11,13 +11,13 @@ app.use(bodyParser.json());
 app.post('/todos', (req, res) => {
   console.log(req.body);
   var newTodo = new Todo({
-    title: req.body.title,
+    text: req.body.text,
     completed: req.body.completed
   })
   newTodo.save().then((doc) => {
-    console.log("it was saved", doc)
+    res.send("it was saved", doc)
   }, (e) => {
-    console.log("unable to save", e)
+    res.send("unable to save", e)
   })
 });
 
