@@ -15,7 +15,7 @@ app.post('/todos', (req, res) => {
     completed: req.body.completed
   })
   newTodo.save().then((doc) => {
-    res.send("it was saved", doc)
+    res.send(doc)
   }, (e) => {
     res.status(400).send(e)
   })
@@ -29,4 +29,4 @@ app.listen(port, () => {
 
 module.exports = {
   app
-}; 
+};
