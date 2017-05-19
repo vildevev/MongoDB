@@ -21,6 +21,15 @@ app.post('/todos', (req, res) => {
   })
 });
 
+app.get('/todos', (req, res) => {
+  var todos = Todo.find((err, docs) => {
+    if(err) {
+      return res.send(err);
+    }
+    res.send(docs);
+  });
+});
+
 var port = process.env.PORT || 3000;
 
 app.listen(port, () => {
