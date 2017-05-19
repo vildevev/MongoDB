@@ -26,3 +26,7 @@ var port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log("You have successfully connected on port " + port)
 });
+
+module.exports = {
+  app
+}; 
