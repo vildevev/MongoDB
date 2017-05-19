@@ -17,7 +17,7 @@ app.post('/todos', (req, res) => {
   newTodo.save().then((doc) => {
     res.send("it was saved", doc)
   }, (e) => {
-    res.send("unable to save", e)
+    res.status(400).send(e)
   })
 });
 
