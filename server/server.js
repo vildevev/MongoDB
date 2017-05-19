@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var {mongoose} = require('./db/mongoose.js');
+var {mongoose, ObjectId} = require('./db/mongoose.js');
 var {Todo} = require('./models/todo.js');
 var {User} = require('./models/user.js');
 
@@ -22,13 +22,23 @@ app.post('/todos', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
-  var todos = Todo.find((err, docs) => {
+  Todo.find((err, docs) => {
     if(err) {
       return res.send(err);
     }
     res.send(docs);
   });
 });
+
+app.get('/todos/:id', (req, res) => {
+  var ObjectID = mongoose.type.ObjectId;
+  Todo.find({_id: newObjectId(req.params.id)}, (err, doc) => {
+    if(err) {
+      return res.send(err);
+    }
+    res.send(doc)
+  })
+})
 
 var port = process.env.PORT || 3000;
 
