@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var {mongoose, ObjectId} = require('./db/mongoose.js');
+var {mongoose} = require('./db/mongoose.js');
 var {Todo} = require('./models/todo.js');
 var {User} = require('./models/user.js');
 
@@ -31,8 +31,7 @@ app.get('/todos', (req, res) => {
 });
 
 app.get('/todos/:id', (req, res) => {
-  var ObjectID = mongoose.type.ObjectId;
-  Todo.find({_id: newObjectId(req.params.id)}, (err, doc) => {
+  Todo.findById(req.params.id, (err, doc) => {
     if(err) {
       return res.send(err);
     }
