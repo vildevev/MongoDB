@@ -50,3 +50,34 @@ describe('POST /todos', () => {
     })
   })
 })
+
+describe('GET /todos', () => {
+  it('should return all todos', (done) => {
+
+    Todo.insertMany([{
+      text: "Testing this out",
+      completed: false
+    },
+    {
+    text: "Does it work?",
+    completed: true
+  }], (err, docs) => {});
+
+    request(app)
+    .get('/todos')
+    .expect(200)
+    .end((err, res) => {
+      if (err) {
+        return done(err);
+      }
+      expect(res.body.length).toBe(2);
+      Todo.find({}, (err, todos) => {
+        if (err) {
+          return done(err);
+        }
+        expect(todos.length).toBe(2);
+        done();
+      });
+    })
+  })
+})
