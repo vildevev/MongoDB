@@ -53,7 +53,6 @@ describe('POST /todos', () => {
 
 describe('GET /todos', () => {
   it('should return all todos', (done) => {
-
     Todo.insertMany([{
       text: "Testing this out",
       completed: false
@@ -61,7 +60,7 @@ describe('GET /todos', () => {
     {
     text: "Does it work?",
     completed: true
-  }], (err, docs) => {});
+    }], (err, docs) => {});
 
     request(app)
     .get('/todos')
@@ -79,5 +78,11 @@ describe('GET /todos', () => {
         done();
       });
     })
+  })
+})
+
+describe('GET /todos/:id', () => {
+  it('returns a todo with a valid id', (done) => {
+    
   })
 })
